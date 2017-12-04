@@ -30,3 +30,9 @@ If you, for example, install vendors, this might be important, so your permissio
 The problem with this is that the user id you are using, may not exist in your container's `/etc/passwd` which can create problems with different software, especially `ssh` which is often used with git to checkout private vendors.
 
 This wrapper dynamically simulates the presence of a `/etc/passwd` entry for the current uid you are using. The username will be the value of the `FAKE_USER` environement variable if present, otherwise it will be `user`. The home of this fake user will be `/tmp`.
+
+## Limitations
+
+* the docker container doesn't have a `/etc/passwd` (we get uid 0 entry from it).
+* the docker container have a `/etc/passwd` but doesn't have a uid 0 entry.
+* it probably won't work a statically compiled binary
